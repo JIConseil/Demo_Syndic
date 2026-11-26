@@ -207,4 +207,5 @@ $("#tabs").onclick=e=>{if(e.target.dataset.t){tab=e.target.dataset.t;render()}};
 $("#q").oninput=render;
 $("#bd").onclick=e=>{const t=e.target.closest("[data-id],[data-z]");if(!t)return;t.dataset.z?selZone(+t.dataset.z):select(+t.dataset.id,true)};
 render();
+(async()=>{const u=new URLSearchParams(location.search).get("file")||"maquette.ifc";try{$("#msg").textContent="Chargement de la maquette…";const r=await fetch(u);if(!r.ok)throw 0;const b=await r.blob();$("#f").onchange({target:{files:[new File([b],u)]}})}catch(e){$("#msg").innerHTML="Ouvrez un fichier .ifc.<br>Il est lu localement, rien n’est envoyé."}})();
 </script></body></html>
